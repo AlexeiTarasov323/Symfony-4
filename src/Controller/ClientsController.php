@@ -6,12 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ClientRepository;
 use App\Form\ClientType;
 use App\Entity\Client;
 use App\Entity\Address;
-
-use Knp\Component\Pager\PaginatorInterface;
 
 class ClientsController extends AbstractController
 {
@@ -56,9 +55,9 @@ class ClientsController extends AbstractController
 
         return $this->render('clients/show.html.twig', [
 
-           'client' => $client,
+            'client' => $client,
             'addresses' => $addresses,
-             'histories' => $histories,
+            'histories' => $histories,
         ]);
     }
 
