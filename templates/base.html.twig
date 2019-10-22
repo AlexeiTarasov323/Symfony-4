@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Clients{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <script src="{{ asset('build/js/app.js') }}"></script>
+        <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+        </script>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block nav %}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a href="{{ path('clients')}}"class="navbar-brand" href="#">
+                    <img src="{{ asset('build/images/img.png') }}" width="35" height="35" alt="">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('clients')}}">Главная</a>
+                        </li>
+                        <a href="{{ path('new_client')}}" class="btn btn-outline-success my-2 my-sm-0">Добавить</a>.
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
+                    </form>
+                </div>
+            </nav>
+        {% endblock %}
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br><div class="mx-auto" style="width: 900px;">
+        <a href="/" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span></a>
+         <div class="card bg-light bo mb-3" style="width: 900px;">
+            <h5 class="card-header ">
+              <div class="container">
+                    <div class="row ">
+                        <div class="col"><h5 class="font-weight-bold">Клиент</h5></div>
+                        <div>
+                            <h6>
+                                <a href="{{ path('client_edit', {'id': client.id}) }}" class="badge badge-success">Изменить</a>
+                                <a href="{{ path('client_delete', {'id': client.id}) }}" class="badge badge-danger">Удалить</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div></h5>
+          <div class="card-body text-secondary">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><u>Имя Фамилия</u></td>
+                  <td><mark>{{ client.name }} {{ client.surname }}</mark></td>
+                </tr>
+                <tr>
+                  <td><u>Телефон</u></td>
+                  <td><mark>{{ client.phone}}</mark></td>
+                </tr>
+                <tr>
+                  <td><u>Email</u></td>
+                  <td><mark>{{ client.email }}</mark></td>
+                </tr>
+                <tr>
+                  <td><u>Дата создания</u></td>
+                  <td><mark>{{ client.createdAt|date('d.m.Y H:m:s') }}</mark></td>
+                </tr>
+                <tr>
+                  <td><u>Дата редактирования</u></td>
+                  <td><mark>{{ client.updatedAt is empty ? " - " : client.updatedAt|date('d.m.Y H:m:s') }}</mark></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card bg-light bo mb-3" style="width: 900px;">
+          <div class="card-header">
+             <div class="container">
+                    <div class="row ">
+                        <div class="col"><h6 class="font-weight-bold">Адрес</h6></div>
+                        <div>
+                            <h6>
+                                <a href="{{ path('client_edit', {'id': client.id}) }}" class="badge">Добавить</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="card-body text-secondary">
+            <table class="table">
+              <tbody>
+                <tr>
+                    <td><u>Страна</u></td>
+                    <td><u>Город</u></td>
+                    <td><u>Дополнительно</u></td>
+                    <td><u></u></td>
+                  </tr>   
+                {% for address in addresses %}
+                  <tr>
+                    <td><mark>{{ address.country}}</mark></td>
+                    <td><mark>{{ address.city}}</mark></td>
+                    <td><mark>{{ address.rest}}</mark></td>
+                    <td>
+                      <a href="{{ path('client_edit', {'id': client.id}) }}" class="badge">Изменить</a>/
+                      <a  href="{{ path('address_delete', {'id': address.id}) }}" class="badge">Удалить</a></td>
+                  </tr>                                                             
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card bg-light bo mb-3" style="width: 900px;">
+          <div class="card-header"><h6 class="font-weight-bold">История</h6></div>
+          <div class="card-body text-secondary">
+            <table class="table">
+              <tbody>
+                <tr>
+                    <td><u>Дата</u></td>
+                    <td><u>Действиe</u></td>
+                    <td><u>Описание</u></td>
+                  </tr>   
+                {% for history in histories %}
+                  <tr>
+                    <td><mark>{{ history.createdAt|date('d.m.Y H:m:s') }}</mark></td>
+                    <td><mark>{{ history.action }}</mark></td>
+                    <td><mark>{{ history.desription }}</mark></td>
+                  </tr>                                                             
+                {% endfor %}        
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+{% endblock %}

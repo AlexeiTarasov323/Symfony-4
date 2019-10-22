@@ -1,0 +1,101 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %} Добавить клиента{% endblock %}
+
+{% block body %}
+
+ {{ form_start(form)}}
+<br><div class="mx-auto" style="width: 1200px;">
+  <div class="card bg-light  mb-3" style="max-width: 1200rem;">
+    <div class="card-header"><h6 class="font-weight-bold">Клиент</h6></div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+          <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="lastName">
+                  <span class="text-danger" aria-hidden="true">*</span>Фамилия</label>
+                <div>{{ form_widget(form.surname) }}</div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="firstName">
+                  <span class="text-danger" aria-hidden="true">*</span>Имя</label>
+                <div>{{ form_widget(form.name) }}</div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="phone">
+                  <span class="text-danger" aria-hidden="true">*</span>Телефон</label>
+                    <div>{{ form_errors(form.phone) }}</div>
+                    <div>{{ form_widget(form.phone) }}</div>
+              </div>
+              <div class="col-md-3 mb-3">
+                 <label for="email">
+                <span class="text-danger" aria-hidden="true">*</span>Email</label>
+                <div>{{ form_widget(form.email) }}</div>
+              </div>
+          </div>
+      </p>
+    </div>
+  </div>
+  <div class="card bg-light mb-3" style="max-width: 500rem;">
+    <div class="card-header"><h6 class="font-weight-bold">Адресс</h6></div>
+    <div class="card-body text-secondary">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+               <div id="email-fields-list"
+                 data-prototype=' 
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                              <label for="country">
+                                <span class="text-success" aria-hidden="true">*</span>Страна</label>
+                              <div>{{ form_widget(form.addresses.vars.prototype.country)|e }}</div>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                              <label for="city">
+                                <span class="text-success" aria-hidden="true">*</span>Город</label>
+                              <div>{{ form_widget(form.addresses.vars.prototype.city)|e }}</div>
+                            </div>
+
+                            <div class="col-md-5 mb-3">
+                              <label for="rest">
+                                <span class="text-success" aria-hidden="true">*</span>Дополнительно</label>
+                                  <div>{{ form_widget(form.addresses.vars.prototype.rest)|e }}</div>
+                            </div>
+                        </div>'
+                        
+                data-widget-tags="{{ '<div></div>'|e }}">
+                     
+                {% for address in form.addresses %}
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                              <label for="country">
+                                <span class="text-success" aria-hidden="true">*</span>Страна</label>
+                              <div>{{ form_widget(address.country) }}</div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                              <label for="city">
+                                <span class="text-success" aria-hidden="true">*</span>Город</label>
+                              <div>{{ form_widget(address.city) }}</div>
+                            </div>
+                            <div class="col-md-5 mb-3">
+                              <label for="rest">
+                                <span class="text-success" aria-hidden="true">*</span>Дополнительно</label>
+                                  <div>{{ form_widget(address.rest) }}</div>
+                            </div>
+                        </div>       
+                {% endfor %}
+            </div>
+             <a href="#"
+              class="add-another-collection-widget badge"
+              data-list="#email-fields-list">Добавить адрес</a>
+        </p>
+     </div>
+  </div>
+  <div>{{ form_widget(form.submit) }}</div>
+</div>              
+{{ form_end(form) }}
+
+ <script src="{{ asset('build/js/app1.js') }}"></script>
+
+{% endblock %}
